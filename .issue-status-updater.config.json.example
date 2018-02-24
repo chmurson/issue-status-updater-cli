@@ -1,0 +1,52 @@
+{
+  "jira": {
+    "tickerPrefix": "XXXX-",
+    "apiUrl": "https://jira.my-domain.com/rest/api",
+    "authorizationToken": "base64token",
+    "taskStatuses": [
+      {
+        "name": "Open",
+        "shortName": "O"
+      },
+      {
+        "name": "In Progress",
+        "shortName": "P"
+      },
+      {
+        "name": "On Hold",
+        "shortName": "OH"
+      },
+      {
+        "name": "Estimation Needed",
+        "shortName": "Est"
+      },
+      {
+        "name": "PV Validation",
+        "shortName": "PV"
+      },
+      {
+        "name": "Code Review",
+        "shortName": "CR"
+      }
+    ],
+    "taskStatusesPaths": [
+      {
+        "from": "Estimation Needed",
+        "to": "In Progress",
+        "path": [
+          "Open"
+        ],
+        "alsoReverse": true
+      },
+      {
+        "from": "Estimation Needed",
+        "to": "Code Review",
+        "path": [
+          "Open",
+          "In Progress"
+        ],
+        "alsoReverse": true
+      }
+    ]
+  }
+}

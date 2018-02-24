@@ -1,0 +1,24 @@
+{
+  "name": "issue-status-updater-cli",
+  "version": "1.0.0",
+  "description": "CLI tool that changes issue's statutes. Currently only Jira is supported.",
+  "engines": {
+    "node": ">=8.5.0"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install-config-file": "cp -n .issue-status-updater.config.json.example ~/.issue-status-updater.config.json"
+  },
+  "author": "Wojciech Piątkowski",
+  "license": "ISC",
+  "dependencies": {
+    "homedir": "0.6.0",
+    "request": "2.83.0",
+    "request-promise-native": "1.0.5"
+  },
+  "bin": {
+    "issue-status-updater": "index.js",
+    "isu": "index.js"
+  }
+}
