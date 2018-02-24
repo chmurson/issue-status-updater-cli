@@ -17,6 +17,10 @@
     "request": "2.83.0",
     "request-promise-native": "1.0.5"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chmurson/issue-status-updater-cli.git"
+  },
   "bin": {
     "issue-status-updater": "index.js",
     "isu": "index.js"
