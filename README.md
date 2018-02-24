@@ -44,7 +44,17 @@ Second is to configure it. Edit following file if your favorite editor.
 > console.log(b.toString('base64'));
 > ```
 
-- `jira.taskStatues` All possible task statuses. `shortName` can be passed an argument instead of `name`.  
+- `jira.taskStatues` All possible task statuses. `shortName` can be passed an argument instead of `name`.
+
+> Short name of task status can be used in CLI command.
+>  ```bash
+>  isu 2655 P
+>  ```
+>  instead of
+>  ```bash
+>  isu 2655 "In Progress"
+>  ```
+  
 - `jira.taskStatusesPath` These are paths of the Jira's workflow. Sometimes more steps than one are required to get task from one
 status to another. To make this update possible with one command, paths between non neighbour statuses have to be defined.
 
@@ -106,4 +116,7 @@ That may change in the future though.
     ]
   }
 }
+```
+
+
 

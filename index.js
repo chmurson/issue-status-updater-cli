@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const request = require('request-promise-native');
 const { readConfig } = require('./src/config');
 
@@ -6,8 +8,18 @@ const config = readConfig();
 const jiraTask = config.tickerPrefix + process.argv[2]; //e.g. '2227';
 const targetStatus = process.argv[3]; //e.g.IN_PROGRESS;
 
+if (!jiraTask || !targetStatus || jiraTask === '-h' || jiraTask === '--help'){
+  console.log("Usage: isu [taskId] [status]", "\nExample: isu 1234 Open");
+  process.exit(1);
+}
+
 const targetTaskStatusObj = getTaskStatusObject(config.taskStatuses, targetStatus);
 const taskStatusesPaths = config.taskStatusesPaths || [];
+
+start({ jiraTask, targetStatus: targetTaskStatusObj.name, taskStatusesPaths }).then(
+    () => process.exit(0),
+    error => console.error(`Error: ${error.message || 'Unknown'}`) && process.exit(1)
+);
 
 /**
  * @param {String} jiraTask
@@ -34,11 +46,6 @@ async function start({ jiraTask, targetStatus, taskStatusesPaths }) {
 
   console.log('Done!');
 }
-
-start({ jiraTask, targetStatus: targetTaskStatusObj.name, taskStatusesPaths }).then(
-    () => process.exit(0),
-    error => console.error(`Error: ${error.message || 'Unknown'}`) && process.exit(1)
-);
 
 /**
  * @param {{name: String, shortName: String}[]} taskStatuses
