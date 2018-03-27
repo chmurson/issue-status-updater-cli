@@ -1,26 +1,27 @@
-const homeDir = require('homedir');
-const fs = require('fs');
-const path = require('path');
+const homeDir = require('homedir')
+const fs = require('fs')
+const path = require('path')
+const get = require('lodash.get')
 
 /**
  * @type {string}
  */
-const configFilePath = path.resolve(homeDir(), '.issue-status-updater.config.json');
+const configFilePath = path.resolve(homeDir(), '.issue-status-updater.config.json')
 
 /**
  * @return {{ticketPrefix: RegExp, apiUrl: string, authorizationToken: string}}
  */
 module.exports.readConfig = function readConfig() {
-  const jira = readFile().jira;
+  const jira = readFile().jira
 
   try {
-    jira.ticketRegex = new RegExp(jira.ticketRegex);
+    jira.ticketRegex = new RegExp(jira.ticketRegex)
   } catch (e) {
-    console.error(`Couldn't parse regex pattern at 'ticketRegex' of config file at ${configFilePath}`);
+    console.error(`Couldn't parse regex pattern at 'ticketRegex' of config file at ${configFilePath}`)
   }
 
-  return jira;
-};
+  return jira
+}
 
 function readFile() {
   if (!fs.existsSync(configFilePath)) {
@@ -28,7 +29,7 @@ function readFile() {
   }
 
   try {
-    return JSON.parse(fs.readFileSync(configFilePath));
+    return JSON.parse(fs.readFileSync(configFilePath))
   } catch (e) {
     throw new Error(`Couldn't parse file at ${configFilePath}`)
   }

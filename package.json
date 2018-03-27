@@ -9,12 +9,14 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "install-config-file": "cp -n -v .issue-status-updater.config.json.example ~/.issue-status-updater.config.json || true",
-    "postinstall": "npm run install-config-file"
+    "postinstall": "npm run install-config-file",
+    "eslint": "eslint index.js ./src/* --fix --cache --ext .js --format 'node_modules/eslint-friendly-formatter' || echo ''"
   },
   "author": "Wojciech Piątkowski",
   "license": "ISC",
   "dependencies": {
     "homedir": "0.6.0",
+    "lodash.get": "^4.4.2",
     "request": "2.83.0",
     "request-promise-native": "1.0.5"
   },
@@ -25,5 +27,13 @@
   "bin": {
     "issue-status-updater": "index.js",
     "isu": "index.js"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.2",
+    "eslint": "^4.19.1",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-friendly-formatter": "^4.0.0",
+    "eslint-plugin-prettier": "^2.6.0",
+    "prettier": "^1.11.1"
   }
 }
